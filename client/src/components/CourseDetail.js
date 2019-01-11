@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-const ReactMarkdown = require('react-markdown')
+import PropTypes from 'prop-types';
+const ReactMarkdown = require('react-markdown');
+
 class CourseDetail extends Component {
+
+   static propTypes = {
+      user: PropTypes.object,
+      id: PropTypes.string
+   };
 
    componentDidMount() {
       fetch(`http://localhost:5000/api/courses/${this.props.id}`)
@@ -47,7 +54,6 @@ splitMaterials = data => {
 
 deleteCourse = (el) => {
    el.preventDefault();
-   // console.log(this.state.user.idUserLogin === this.state.userIdCourse)
    if (this.state.user.idUserLogin === this.state.userIdCourse) {
       axios.delete(`http://localhost:5000/api/courses/${this.state.idCourse}`, {
          data: {
@@ -62,13 +68,6 @@ deleteCourse = (el) => {
    } else this.props.history.push('/forbidden');
 }
    render() {
-
-      // if (this.state.course.materialsNeeded) {
-      //    this.splitMaterials (this.state.course.materialsNeeded)
-      // }
-
-      // console.log(this.state.course.materialsNeeded)
-
       const isOwner = this.state.userIdCourse === this.props.user.idUserLogin
       return(
          <div>
@@ -122,10 +121,6 @@ deleteCourse = (el) => {
               </div>
             }
          </div>
-
-
-
-
       );
    }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Forbidden = (props) => {
+const Forbidden = () => {
 
    return (
       <div className="bounds">

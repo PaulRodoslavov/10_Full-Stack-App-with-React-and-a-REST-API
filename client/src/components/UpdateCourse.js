@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-class UpdateCourse extends Component {
+import PropTypes from 'prop-types';
 
+class UpdateCourse extends Component {
+   static propTypes = {
+      user: PropTypes.object,
+      id: PropTypes.string
+   };
    componentWillMount() {
       fetch(`http://localhost:5000/api/courses/${this.props.id}`)
       .then(res => {
@@ -36,14 +41,9 @@ class UpdateCourse extends Component {
       }
    )};
 
-   // componentWillMount () {
-   //
-   // }
-
    updateCourse = event => {
       const name = this.props.user.emailAddress;
       const pass = this.props.user.password;
-      // console.log(name, pass )
       event.preventDefault();
       const {
         title,
@@ -54,8 +54,6 @@ class UpdateCourse extends Component {
       } = this.state;
 
       const session_url = `http://localhost:5000/api/courses/${this.props.id}`;
-      // const name = this.props.user.emailAddress;
-      // const pass = this.props.user.password;
       axios.put(session_url, {}, {
          auth: {
             username: name,

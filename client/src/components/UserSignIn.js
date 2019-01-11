@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 // import { browserHistory } from 'react-router'
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
-
+import PropTypes from 'prop-types';
 
 
 class UserSignIn extends Component {
 
-
-  //
-  //  static contextTypes = {
-  //   router: () => true, // replace with PropTypes.object if you use them
-  // }
+   static propTypes = {
+      user: PropTypes.object,
+      signIn: PropTypes.func
+   };
 
 state = {
    emailAddress:'',
@@ -26,8 +25,6 @@ onSubmit = event => {
    this.props.signIn(this.state.emailAddress, this.state.password, this.props.history);
 
 }
-
-
 
    render() {
       return(
@@ -57,9 +54,3 @@ onSubmit = event => {
 }
 
 export default withRouter(UserSignIn);
-
-
-
-// static contextTypes = {
-//     router: () => true, // replace with PropTypes.object if you use them
-//   }

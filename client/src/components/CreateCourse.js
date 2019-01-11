@@ -1,87 +1,82 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
 
 class CreateCourse extends Component {
-state = {
-   validTitle: 'Please provide a value for "Title" - min 5 characters',
-   validDescrip: 'Please provide a value for "Description" - min 5 characters',
-   title: "",
-   description: "",
-   estimatedTime: "",
-   materialsNeeded: ""
-}
+   static propTypes = {
+      user: PropTypes.object
+   };
+   state = {
+      validTitle: 'Please provide a value for "Title" - min 5 characters',
+      validDescrip: 'Please provide a value for "Description" - min 5 characters',
+      title: "",
+      description: "",
+      estimatedTime: "",
+      materialsNeeded: ""
+   }
 
-validTitle = (event) => {
-    this.setState({valueTitle: event.target.value});
-}
-  validDescrip = (event) => {
-      this.setState({valueDescrip: event.target.value});
-}
-removeElement () {
-   const validWrap = document.querySelector(".validation-wrapper");
-   if (validWrap) {
-      if(this.state.title.length > 5 && this.state.description.length > 5) {
-         validWrap.style.display = "none"
-      } else {
-         validWrap.style.display = "block"
+   validTitle = (event) => {
+       this.setState({valueTitle: event.target.value});
+   }
+     validDescrip = (event) => {
+         this.setState({valueDescrip: event.target.value});
+   }
+   removeElement () {
+      const validWrap = document.querySelector(".validation-wrapper");
+      if (validWrap) {
+         if(this.state.title.length > 5 && this.state.description.length > 5) {
+            validWrap.style.display = "none"
+         } else {
+            validWrap.style.display = "block"
+         }
       }
    }
-}
-onChange = event => {
-   this.setState({ [event.target.name]: event.target.value });
-}
-onSubmit = event => {
-   event.preventDefault();
-   // console.log(this.props.user.idUserLogin)
-   // console.log(document.referrer);
-   if (this.props.user.idUserLogin) {
-      const {
-        title,
-        description,
-        estimatedTime,
-        materialsNeeded
-      } = this.state;
-
-      const user = this.props.user.idUserLogin;
-
-      axios.post("http://localhost:5000/api/courses", {}, {
-         // auth: {
-         //   username: 'pasha@gmail.com',
-         //   password: '12345'
-         // },
-         data: {
-           title: title,
-           description: description,
-           estimatedTime: estimatedTime,
-           materialsNeeded: materialsNeeded,
-           user: user
-         }
-      })
-        .then(res => {
-           // console.log(res)
-           if(res.status === 201) {
-              this.props.history.push('/');
-           }
-           if (res.status === 500)  this.props.history.push('/error');
-        })
-
-
-
-
-
-
-
-
-        .catch(error => console.log(error));
-   } else console.log('error')
-}
-componentWillMount() {
-   if (!this.props.user.idUserLogin) {
-      this.props.history.push('/signin')
-      return <div>Loading...</div>;
+   onChange = event => {
+      this.setState({ [event.target.name]: event.target.value });
    }
-}
+   onSubmit = event => {
+      event.preventDefault();
+      // console.log(this.props.user.idUserLogin)
+      // console.log(document.referrer);
+      if (this.props.user.idUserLogin) {
+         const {
+           title,
+           description,
+           estimatedTime,
+           materialsNeeded
+         } = this.state;
+
+         const user = this.props.user.idUserLogin;
+
+         axios.post("http://localhost:5000/api/courses", {}, {
+            // auth: {
+            //   username: 'pasha@gmail.com',
+            //   password: '12345'
+            // },
+            data: {
+              title: title,
+              description: description,
+              estimatedTime: estimatedTime,
+              materialsNeeded: materialsNeeded,
+              user: user
+            }
+         })
+           .then(res => {
+              if(res.status === 201) {
+                 this.props.history.push('/');
+              }
+              if (res.status === 500)  this.props.history.push('/error');
+           })
+           .catch(error => console.log(error));
+      } else console.log('error')
+   }
+   componentWillMount() {
+      if (!this.props.user.idUserLogin) {
+         this.props.history.push('/signin')
+         return <div>Loading...</div>;
+      }
+   }
 
    render() {
 
@@ -89,8 +84,7 @@ componentWillMount() {
         title,
         description,
         estimatedTime,
-        materialsNeeded,
-        // user
+        materialsNeeded
       } = this.state;
       this.removeElement ();
 

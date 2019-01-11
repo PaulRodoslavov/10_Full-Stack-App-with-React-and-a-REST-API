@@ -43,7 +43,6 @@ class App extends Component {
            user: {firstName, lastName, password, emailAddress, idUserLogin}
          });
          history.goBack();
-         // history.push("/")
        }
      })
      .catch(err => console.log(err));
@@ -65,9 +64,6 @@ class App extends Component {
       <BrowserRouter>
          <div className="App">
          <Route path="/" render={() => <Header user={user}/>}/>
-
-
-
          <Switch>
             <Route exact path="/" render={ props => <Courses user={user}/>}/>
             <Route exact path="/courses/create" render= {props => <CreateCourse user={user}/>}/>

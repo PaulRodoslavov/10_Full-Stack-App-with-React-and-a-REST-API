@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-
+import PropTypes from 'prop-types';
 class LogOut extends Component {
 
+   static propTypes = {
+      user: PropTypes.object
+   };
+   
    eventLogOut = () => {
      localStorage.clear();
      window.location.reload();
