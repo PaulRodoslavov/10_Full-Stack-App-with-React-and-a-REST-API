@@ -73,7 +73,6 @@ class App extends Component {
             <Route exact path="/courses/create" render= {props => <CreateCourse user={user}/>}/>
             <Route path="/courses/:id/update/" render={ props => <UpdateCourse id={props.match.params.id} user={user}/>}/>
             <Route exact path="/courses/:id/" render={ props => <CourseDetail id={props.match.params.id} user={user}/>}/>
-
             <Route path="/signin" render={ props => <UserSignIn signIn={this.signIn} history={props.path}/>}/>
             <Route path="/signup" render={() => loggedIn ? ( <Redirect to="/"/>) : (<UserSignUp/>)}/>
             <Route path="/forbidden" component={ Forbidden }/>
