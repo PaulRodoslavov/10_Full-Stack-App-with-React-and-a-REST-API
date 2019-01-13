@@ -21,6 +21,8 @@ class App extends Component {
       user: ''
    }
 
+//function for signIn users
+
    signIn = (email, pass, history) => {
       // console.log(email, pass)
      axios.get('http://localhost:5000/api/users', {
@@ -47,8 +49,6 @@ class App extends Component {
      })
      .catch(err => console.log(err));
    }
-
-
 
 
   render() {

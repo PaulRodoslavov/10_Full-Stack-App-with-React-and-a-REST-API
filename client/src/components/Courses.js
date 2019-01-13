@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 // const courses = this.state.courses;
 class Courses extends Component {
 
+//send GET request to get all courses
    componentDidMount() {
       fetch('http://localhost:5000/api/courses')
       .then(res => res.json())
@@ -19,14 +20,6 @@ class Courses extends Component {
    state = {
       courses: '',
       isLoaded: false
-   }
-   checkUserLogin = event => {
-      // event.preventDefault();
-      // this.props.user.idUserLogin ?
-      //                this.props.history.push('/courses/create')
-      //                :
-      //                this.props.history.push('/signin')
-      // console.log(this.props.user.idUserLogin)
    }
 
    render() {
@@ -47,7 +40,7 @@ class Courses extends Component {
                   </div>
                ))}
                <div className="grid-33">
-                  <Link to="/courses/create" onClick={this.checkUserLogin}className="course--module course--add--module" >
+                  <Link to="/courses/create" className="course--module course--add--module" >
                      <h3 className="course--add--title">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 13 13" className="add">
                              <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon>

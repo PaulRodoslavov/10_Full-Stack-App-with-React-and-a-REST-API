@@ -12,6 +12,7 @@ class CourseDetail extends Component {
       id: PropTypes.string
    };
 
+//get info about course
    componentDidMount() {
       fetch(`http://localhost:5000/api/courses/${this.props.id}`)
       .then(res => {
@@ -46,12 +47,14 @@ class CourseDetail extends Component {
       isLoding: true
    }
 
+//add good formatting text for field materialsNeeded
 splitMaterials = data => {
       const split = data.split(/\r?\n/)
       const readySplit = split.map(el => {return "\n* " + el}).join('');
    return readySplit;
 }
 
+//delete course using "DELETE" request
 deleteCourse = (el) => {
    el.preventDefault();
    if (this.state.user.idUserLogin === this.state.userIdCourse) {

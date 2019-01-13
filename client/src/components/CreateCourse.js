@@ -15,13 +15,15 @@ class CreateCourse extends Component {
       estimatedTime: "",
       materialsNeeded: ""
    }
-
+   //check validation Title
    validTitle = (event) => {
        this.setState({valueTitle: event.target.value});
    }
+   //check validation Description
      validDescrip = (event) => {
          this.setState({valueDescrip: event.target.value});
    }
+   // add or remove error messages validation
    removeElement () {
       const validWrap = document.querySelector(".validation-wrapper");
       if (validWrap) {
@@ -35,10 +37,9 @@ class CreateCourse extends Component {
    onChange = event => {
       this.setState({ [event.target.name]: event.target.value });
    }
+   //create course by using POST request
    onSubmit = event => {
       event.preventDefault();
-      // console.log(this.props.user.idUserLogin)
-      // console.log(document.referrer);
       if (this.props.user.idUserLogin) {
          const {
            title,

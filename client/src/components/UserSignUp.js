@@ -27,6 +27,7 @@ onChange = event => {
    this.setState({ [event.target.name]: event.target.value})
 }
 
+//signUp user, send POST request
 onSubmit = (el) => {
    const {firstName,
          lastName,
@@ -55,13 +56,11 @@ onSubmit = (el) => {
                console.log("change password")
             }
          });
-} else {
-   console.log('fill all fields')
+   } else {
+      console.log('fill all fields')
+   }
 }
-
-
-}
-
+//check validation each fillds
 checkValid = val => {
    let chkVal;
    if (val) {
@@ -71,6 +70,7 @@ checkValid = val => {
    }
    return chkVal;
 }
+//check match passwords
 checkValidPass = (pass, confirm) => {
    let chkVal;
    if (pass !== confirm) {
@@ -80,6 +80,7 @@ checkValidPass = (pass, confirm) => {
    }
    return chkVal
 }
+//check if password id uniq
 checkUniqPass = (pass) => {
    if (pass) {
       let error = "There is already an account associated with this email.";

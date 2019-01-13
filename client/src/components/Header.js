@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
+
+//component for signed users
 class LogOut extends Component {
 
    static propTypes = {
       user: PropTypes.object
    };
-   
+
    eventLogOut = () => {
      localStorage.clear();
      window.location.reload();
@@ -22,7 +24,7 @@ class LogOut extends Component {
       );
    }
 }
-
+//component for not signed users
 const LogIn = () => {
    return (
       <div>

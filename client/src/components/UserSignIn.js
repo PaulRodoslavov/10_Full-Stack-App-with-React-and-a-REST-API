@@ -12,19 +12,19 @@ class UserSignIn extends Component {
       signIn: PropTypes.func
    };
 
-state = {
-   emailAddress:'',
-   password:''
-}
-onChange = event => {
-   this.setState({[event.target.name]: event.target.value});
-}
+   state = {
+      emailAddress:'',
+      password:''
+   }
+   onChange = event => {
+      this.setState({[event.target.name]: event.target.value});
+   }
+   //signIn user using auth, send GET request
+   onSubmit = event => {
+      event.preventDefault();
+      this.props.signIn(this.state.emailAddress, this.state.password, this.props.history);
 
-onSubmit = event => {
-   event.preventDefault();
-   this.props.signIn(this.state.emailAddress, this.state.password, this.props.history);
-
-}
+   }
 
    render() {
       return(

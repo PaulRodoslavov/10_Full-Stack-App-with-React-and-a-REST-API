@@ -8,6 +8,7 @@ class UpdateCourse extends Component {
       user: PropTypes.object,
       id: PropTypes.string
    };
+   //get info about selected course by using GET requiest
    componentWillMount() {
       fetch(`http://localhost:5000/api/courses/${this.props.id}`)
       .then(res => {
@@ -40,7 +41,7 @@ class UpdateCourse extends Component {
          console.log('Error fetching and parsing data', error);
       }
    )};
-
+   //update Course by using PUT request
    updateCourse = event => {
       const name = this.props.user.emailAddress;
       const pass = this.props.user.password;
@@ -87,14 +88,16 @@ class UpdateCourse extends Component {
 onChange = event => {
    this.setState({[event.target.name]: event.target.value});
 }
-
+//check validation Title
 validTitle = (event) => {
     this.setState({valueTitle: event.target.value});
     console.log(event.target.value)
 }
-  validDescrip = (event) => {
-      this.setState({valueDescrip: event.target.value});
+//check validation Description
+validDescrip = (event) => {
+   this.setState({valueDescrip: event.target.value});
 }
+// add or remove error messages validation
 removeElement () {
    const validWrap = document.querySelector(".validation-wrapper");
    if (validWrap) {
@@ -108,10 +111,6 @@ removeElement () {
 
 
    render() {
-      // const name = this.props.user.emailAddress;
-      // const pass = this.props.user.password;
-      // console.log(name, pass )
-      // if (this.state.res) console.log(this.state.res.user._id)
       this.removeElement ();
 
       return(
