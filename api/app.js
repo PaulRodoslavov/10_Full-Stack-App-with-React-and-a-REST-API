@@ -45,10 +45,6 @@ db.once("open", function(){
 // Routers
 app.use(routes);
 
-// app.get('/api/courses1', cors(), function (req, res, next) {
-//   res.json({msg: 'This is CORS-enabled for a Single Route'})
-// })
-
 // send 404 if no other route matched
 app.use((req, res) => {
   res.status(404).json({
